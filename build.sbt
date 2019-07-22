@@ -20,3 +20,5 @@ lazy val mainApp = Project(id="mainApp", base = file("mainApp"))
 dockerExposedPorts ++= Seq(9000, 9001)
 // for udp ports
 dockerExposedUdpPorts += 4444
+
+addCommandAlias("run", "mainApp/run")
