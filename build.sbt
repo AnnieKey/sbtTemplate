@@ -1,3 +1,6 @@
+
+
+
 name := "sbtTemplate"
 
 scalaVersion := "2.13.0"
@@ -8,6 +11,10 @@ lazy val root = (project in file("."))
   .enablePlugins(ScalastylePlugin)
   .enablePlugins(DependencyGraphPlugin)
   .enablePlugins(DockerPlugin)
+  //the reason for enabling JavaAppPackaging
+  //[error] [1] You have no mappings defined! This will result in an empty package
+  //[error] Try enabling an archetype, e.g. `enablePlugins(JavaAppPackaging)`
+  .enablePlugins(JavaAppPackaging)
 
 lazy val content = Project(id="content", base = file("content"))
 
@@ -21,4 +28,4 @@ dockerExposedPorts ++= Seq(9000, 9001)
 // for udp ports
 dockerExposedUdpPorts += 4444
 
-addCommandAlias("run", "mainApp/run")
+
