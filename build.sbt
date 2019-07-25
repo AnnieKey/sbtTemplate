@@ -8,6 +8,10 @@ lazy val root = (project in file("."))
   .aggregate(content, mainApp)
   .enablePlugins(ScalastylePlugin)
   .enablePlugins(DependencyGraphPlugin)
+  .settings(
+    publishTo := Some(Resolver.file("publishFile",  new File( "sbtTemplates/releases" )) ),
+    skip in publish := true
+  )
 
 lazy val content = Project(id="content", base = file("content"))
 
