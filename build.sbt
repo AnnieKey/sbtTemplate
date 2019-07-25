@@ -9,7 +9,7 @@ lazy val root = (project in file("."))
   .enablePlugins(ScalastylePlugin)
   .enablePlugins(DependencyGraphPlugin)
   .settings(
-    publishTo := Some(Resolver.file("publishFile",  new File( "/sbtTemplates" )) ),
+    publishTo := Some(Resolver.file("sbtTemplate",  new File( "/sbtTemplate" )) ),
     skip in publish := true
   )
 
