@@ -1,3 +1,5 @@
+import ReleaseTransformations._
+
 //GENERAL SETTINGS------------------------------------------------------------------------------------------------------
 name := "sbtTemplate"
 scalaVersion := "2.13.0"
@@ -8,10 +10,6 @@ lazy val root = (project in file("."))
   .aggregate(content, mainApp)
   .enablePlugins(ScalastylePlugin)
   .enablePlugins(DependencyGraphPlugin)
-  .settings(
-    publishTo := Some("sbtTemplate" at "https://github.com/AnnieKey/sbtTemplate"),
-    skip in publish := true
-  )
 
 lazy val content = Project(id="content", base = file("content"))
 
@@ -33,3 +31,21 @@ lazy val dockerSettings = Seq(
   dockerExposedPorts ++= Seq(9000, 9001),
   dockerExposedUdpPorts += 4444
 )
+
+
+//VERSIONING SETTINGS---------------------------------------------------------------------------------------------------
+publishTo := Some("sbtTemplate" at "https://github.com/AnnieKey/sbtTemplate")
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
+)
+releaseUseGlobalVersion := false
