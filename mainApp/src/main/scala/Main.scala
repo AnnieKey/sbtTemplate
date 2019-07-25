@@ -1,4 +1,6 @@
-
 object Main extends App {
-  println("Hello, from mainApp.src.scala.Main!")
+  def PrintSentence(): Unit = {
+    println("Hello from Main!")
+  }
+  Content.printLibraryContent()
 }
